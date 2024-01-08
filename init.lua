@@ -10,50 +10,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
-local lsp_zero = require('lsp-zero')
-
-lsp_zero.on_attach(function(client, bufnr)
-    -- see :help lsp-zero-keybindings
-    -- to learn the available actions
-    lsp_zero.default_keymaps({buffer = bufnr})
-end)
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    handlers = {
-        lsp_zero.default_setup,
-        lua_ls = function()
-            -- (Optional) configure lua language server
-            local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
-        end,
-    },
-})
-
----
--- Autocompletion config
----
-local cmp = require('cmp')
-local cmp_action = lsp_zero.cmp_action()
-
-cmp.setup({
-    mapping = cmp.mapping.preset.insert({
-        -- `Enter` key to confirm completion
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
-
-        -- Ctrl+Space to trigger completion menu
-        ['<C-Space>'] = cmp.mapping.complete(),
-
-        -- Navigate between snippet placeholder
-        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-
-        -- Scroll up and down in the completion documentation
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    })
-})
-
 local augroup = vim.api.nvim_create_augroup
 local Tuzi555Group = augroup('tuzi555', {})
 
@@ -79,6 +35,21 @@ autocmd({"BufWritePre"}, {
     group = Tuzi555Group,
     pattern = "*",
     command = [[%s/\s\+$//e]]
+})
+
+autocmd({'LspAttach'}, {
+    group = Tuzi555Group,
+    callback = function(e)
+        local opts = { buffer = e.buf }
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+        vim.keymap.set("n", "<leader>vd", function() vim.lsp.buf.open_float() end, opts)
+        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    end
 })
 
 vim.g.netrw_browse_split = 0
