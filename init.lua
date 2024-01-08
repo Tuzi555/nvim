@@ -27,7 +27,7 @@ autocmd('TextYankPost', {
     callback = function()
         vim.highlight.on_yank({
             higroup = 'IncSearch',
-            timeout = 40
+            timeout = 120
         })
     end
 })
@@ -67,4 +67,4 @@ function ColorMyPencils(color)
 
 end
 
-ColorMyPencils("onedark")
+ColorMyPencils()
