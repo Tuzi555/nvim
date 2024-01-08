@@ -10,6 +10,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+
 local augroup = vim.api.nvim_create_augroup
 local Tuzi555Group = augroup('tuzi555', {})
 
@@ -55,3 +56,15 @@ autocmd({'LspAttach'}, {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+
+function ColorMyPencils(color)
+   color = color or "rose-pine"
+    vim.cmd.colorscheme(color)
+
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+end
+
+ColorMyPencils("onedark")
