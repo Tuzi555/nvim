@@ -10,3 +10,5 @@ vim.opt.smartindent = true
 vim.opt.scrolloff = 8
 
 vim.opt.colorcolumn = "80"
+
+vim.opt.clipboard = "unnamedplus"
