@@ -2,18 +2,27 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        priority = 1000
-    },
-    "olimorris/onedarkpro.nvim",
-    {
-        'rose-pine/neovim',
-        name = 'rose-pine',
-    },
-    "folke/tokyonight.nvim",
-    {
-        "loctvl842/monokai-pro.nvim",
+        priority = 1000,
         config = function ()
-            require("monokai-pro").setup()
+            require("catppuccin").setup {
+                custom_highlights = function (colors)
+                    return {
+                        Normal = { bg = colors.none},
+                        TelescopePromptNormal = { bg = colors.surface0 },
+                        TelescopeNormal = { bg = colors.base },
+                        TelescopeBorder = { fg = colors.blue, bg = colors.base },
+                        NormalNC = { bg = colors.none },
+                    }
+                end,
+                integrations = {
+                    cmp = true,
+                    treesitter = true,
+                    telescope = {
+                        enabled = true
+                    },
+                    harpoon = true,
+                    lsp_trouble = true
+                }
+            }
         end
-    }
-}
+    }}
