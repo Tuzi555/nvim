@@ -59,13 +59,10 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 
-function ColorMyPencils(color)
-   color = color or "monokai-pro"
-    vim.cmd.colorscheme(color)
-
+function GoAway()
     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 end
 
-ColorMyPencils()
+GoAway()

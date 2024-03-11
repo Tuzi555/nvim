@@ -27,7 +27,7 @@ return {
                 mapping = cmp.mapping.preset.insert({
                     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                    ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ['<tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                     ['<C-Space>'] = cmp.mapping.complete(),
                 }),
                 sources = cmp.config.sources({
@@ -43,7 +43,8 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "rust_analyzer",
-                    "tsserver"
+                    "tsserver",
+                    "omnisharp"
                 },
                 handlers = {
                     function(server_name)
