@@ -1,8 +1,8 @@
 return {
 	"sbdchd/neoformat",
 	config = function()
-		vim.api.nvim_set_keymap("n", "<leader>ff", ":Neoformat<CR>", { noremap = true, silent = true })
-		vim.api.nvim_set_keymap("v", "<leader>ff", ":Neoformat<CR>", { noremap = true, silent = true })
+		vim.api.nvim_set_keymap("n", "<leader>f", ":Neoformat<CR>", { noremap = true, silent = true })
+		vim.api.nvim_set_keymap("v", "<leader>f", ":Neoformat<CR>", { noremap = true, silent = true })
 		vim.g.neoformat_try_node_exe = 1
 		vim.g.neoformat_enabled_javascript = { "prettier" }
 		vim.g.neoformat_enabled_typescript = { "prettier" }
