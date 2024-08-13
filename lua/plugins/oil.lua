@@ -26,6 +26,9 @@ return {
 				["g."] = "actions.toggle_hidden",
 				["g\\"] = "actions.toggle_trash",
 			},
+			view_options = {
+				show_hidden = true,
+			},
 		})
 	end,
 	keys = {
